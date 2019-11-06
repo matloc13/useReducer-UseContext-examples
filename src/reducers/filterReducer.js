@@ -1,5 +1,4 @@
-import { useState } from "react";
-const filterReducer = () => {
+const filterReducer = (state, action) => {
   switch (action.type) {
     case "SHOW_ALL":
       return "ALL";
