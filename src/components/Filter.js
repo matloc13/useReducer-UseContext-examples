@@ -1,5 +1,11 @@
-import React from "react";
-const Filter = ({ dispatch }) => {
+import React, { useContext } from "react";
+import DispatchContext from '../contexts/DispatchContext';
+
+
+
+const Filter = () => {
+
+  const dispatch = useContext(DispatchContext);
   const handleShowAll = () => {
     dispatch({ type: "SHOW_ALL" });
   };

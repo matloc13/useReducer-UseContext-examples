@@ -23,7 +23,7 @@ const todoReducer = (state, action) => {
         complete: false
       });
     default:
-      throw new Error();
+      return state;
   }
 };
 export default todoReducer;

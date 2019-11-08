@@ -6,7 +6,7 @@ import Filter from "./components/Filter";
 import TodoList from "./components/TodoList";
 import AddTodo from "./components/AddTodo";
 import "./App.css";
-import TodoContext from "./contexts/TodoContext";
+import DispatchContext from "./contexts/DispatchContext";
 
 const initTodos = [
   {
@@ -31,6 +31,15 @@ const App = () => {
   // const [todos, setTodos] = useState(initTodos);
   const [filter, dispatchFilter] = useReducer(filterReducer, "ALL");
   const [todos, dispatchTodos] = useReducer(todoReducer, initTodos);
+
+  const dispatch = (action) => {
+    [dispatchTodos, dispatchFilter].forEach(fn => fn(action));
+  }
+
+  const state = {
+    filter,
+    todos
+  };
 
   const filteredTodos = todos.filter(todo => {
     if (filter === "ALL") {
@@ -116,11 +125,11 @@ const App = () => {
       <button type="button" onClick={handleShowIncomplete}>
         Show Incomplete
       </button> */}
-      <TodoContext.Provider value={dispatchTodos}>
-        <Filter dispatch={dispatchFilter} />
+      <DispatchContext.Provider value={dispatch}>
+        <Filter />
         <TodoList todos={filteredTodos} />
         <AddTodo />
-      </TodoContext.Provider>
+      </DispatchContext.Provider>
     </div>
   );
 };

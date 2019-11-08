@@ -1,9 +1,9 @@
 import React, { useState, useContext } from "react";
 import uuid from "uuid/v4";
-import TodoContext from "./../contexts/TodoContext";
+import DispatchContext from "../contexts/DispatchContext";
 
 const AddTodo = () => {
-  const dispatch = useContext(TodoContext);
+  const dispatch = useContext(DispatchContext);
   const [task, setTask] = useState("");
   const handleSubmit = e => {
     if (task) {
